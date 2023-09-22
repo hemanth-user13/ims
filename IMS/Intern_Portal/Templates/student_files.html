@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Uploaded Files</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Upload Weekly Report:</label>
+        <input type="file" name="weekly_report" accept=".pdf, .doc, .docx">
+        <label>Certificate:</label>
+        <input type="file" name="certificate" accept=".pdf, .doc, .docx">
+        <label>PPT:</label>
+        <input type="file" name="ppt" accept=".ppt, .pptx">
+        <label>Final Project Report:</label>
+        <input type="file" name="final_project_report" accept=".pdf, .doc, .docx">
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>

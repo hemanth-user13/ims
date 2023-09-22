@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Files</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+        }
+        .navbar {
+            background-color: #3498db;
+            height: 50px;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #e74c3c;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .box {
+            width: 400px;
+            height: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h3 {
+            color: #4169e1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-weight: bold;
+            color: #3498db;
+        }
+        button[type="submit"] {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        a {
+            color: #e74c3c;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        /* Additional styles for the search form */
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            margin-right: 10px;
+        }
+
+        /* Styles for the table button */
+        .table-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 15px;
+        }
+        .table-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const box = document.querySelector('.box');
+            box.classList.add('show');
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">HOD Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Search form -->
+                <form class="form-inline my-2 my-lg-0 ml-auto search-form">
+                    <input class="form-control mr-sm-2 search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <!-- Table button -->
+                <button class="btn btn-primary table-button" onclick="window.location.href = '{% url 'mapping_list' %}';">View Mapping List</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="box">
+            <h3 class="text-center">Upload Excel Files</h3>
+            <form method="post" enctype="multipart/form-data" action="{% url 'generate_mapping_excel' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="faculty_file">Faculty Excel File:</label>
+                    <input type="file" class="form-control" name="faculty_file" accept=".xlsx">
+                </div>
+                <div class="form-group">
+                    <label for="student_file">Student Excel File:</label>
+                    <input type="file" class="form-control" name="student_file" accept=".xlsx">
+                </div>
+                <button type="submit" class="btn btn-primary">Generate Mapping</button>
+            </form>
+            <a href="{% url 'download_mapped_excel' %}" class="btn btn-link">
+                <i class="far fa-file-excel"></i> Download Mapped Excel Sheet
+            </a>
+        </div>
+    </div>
+</body>
+</html>

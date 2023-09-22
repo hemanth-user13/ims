@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS for Navbar Color -->
+    <style>
+        .custom-navbar {
+            background-color: #021691; /* Change this color to your desired color */
+        }
+
+        .custom-navbar .navbar-brand,
+        .custom-navbar .navbar-nav .nav-link {
+            color: #fff; /* Change text color to white or another color for contrast */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar with Custom Color -->
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">Student Dashboard</a>
+
+            <!-- Activity Button with Dropdown -->
+            <div class="ml-auto">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Activity
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <!-- Link to "Upload Files" page -->
+                        <a class="dropdown-item" href="{% url 'student_files' %}">Upload Files</a>
+                        <a class="dropdown-item" href="#">Chat</a>
+                    </div>
+                    <div>
+                        <button><a href="#" class="btn btn-danger">Log Out</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add your content here -->
+
+    <div class="container">
+        <h4>Welcome {{ username }}</h4>
+        <h4>Faculty Information:</h4>
+        <p>Faculty Name: {{ faculty_name }}</p>
+        <p>Faculty Email: {{ faculty_email }}</p>
+        <p>Faculty Phone: {{ faculty_phone }}</p>
+        <!-- Add your dashboard content here -->
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
